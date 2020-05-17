@@ -34,3 +34,11 @@ The frameworks are linked as follows:
 - Removing the `OtherFramework` framework from the `MyApp` target allows the project to build successfully for the Simulator, but this fails on device as `OtherFramework` is not loaded.
 - This build failure seems to disappear on the first build on a clean system (i.e. on CI this issue only seems to sporadically occur).
 - Integrating normal `.framework` frameworks in this exact manner works fine.
+
+---
+
+## Update
+
+As written by [pyckamil](https://github.com/pyckamil) in [this article](https://pyckamil.github.io/programming,/xcframework,/xcode/2020/05/09/everything-wrong-with-xcframeworks.html?utm_campaign=iOS%2BDev%2BWeekly&utm_medium=email&utm_source=iOS%2BDev%2BWeekly%2BIssue%2B456) this issue is caused by the `ProcessXCFrameworkLibrary` step which extracts the `.framework` from an `.xcframework` for the active build architecture. Xcode only runs this once for an `xcframework` and does not use `FRAMEWORK_SEARCH_PATHS` causing the framework to potentially not be found in a second target.
+
+A workaround that potentially works is to make the search path for your framework recursive in `FRAMEWORK_SEARCH_PATHS`, but this also has its own issues - suggested in [#1](https://github.com/msaps/XCFramework-Link-Issue/pull/1) by [dipidoo](https://github.com/dipidoo)
