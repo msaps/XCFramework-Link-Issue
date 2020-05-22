@@ -1,0 +1,14 @@
+//
+//  Config.xcconfig
+//  MyApp
+//
+//  Created by Bumseok Lee on 20200522.
+//  Copyright © 2020 Framework Test. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+FRAMEWORK_SEARCH_PATHS              = $(SRCROOT)/../Frameworks
+FRAMEWORK_SEARCH_PATHS[arch=arm64]  = $(FRAMEWORK_SEARCH_PATHS) $(SRCROOT)/../Frameworks/OtherFramework.xcframework/ios-arm64
+FRAMEWORK_SEARCH_PATHS[arch=x86_64] = $(FRAMEWORK_SEARCH_PATHS) $(SRCROOT)/../Frameworks/OtherFramework.xcframework/ios-x86_64-simulator
