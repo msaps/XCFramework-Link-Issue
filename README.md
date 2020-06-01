@@ -37,8 +37,20 @@ The frameworks are linked as follows:
 
 ---
 
-## Update
+## Why this happens
 
 As written by [pyckamil](https://github.com/pyckamil) in [this article](https://pyckamil.github.io/programming,/xcframework,/xcode/2020/05/09/everything-wrong-with-xcframeworks.html?utm_campaign=iOS%2BDev%2BWeekly&utm_medium=email&utm_source=iOS%2BDev%2BWeekly%2BIssue%2B456) this issue is caused by the `ProcessXCFrameworkLibrary` step which extracts the `.framework` from an `.xcframework` for the active build architecture. Xcode only runs this once for an `xcframework` and does not use `FRAMEWORK_SEARCH_PATHS` causing the framework to potentially not be found in a second target.
 
+## Workarounds
+
+### Explicit Architecture Framework Search Paths
+It is possible to ensure that the framework target (in this case `MyFramework`) can find `OtherFramework` by explicitly adding a framework search path to the architecture-specific `.framework` within `OtherFramework.xcframework`:
+
+<p align="center">
+    <img src="img/arch-framework-paths.png" width="890" alt="Framework Search Paths"/><br />
+</p>
+
+Suggested in [#2](https://github.com/msaps/XCFramework-Link-Issue/pull/2) by [shinsuk](https://github.com/shinsuk)
+
+### Recurive Framework Search Paths
 A workaround that potentially works is to make the search path for your framework recursive in `FRAMEWORK_SEARCH_PATHS`, but this also has its own issues - suggested in [#1](https://github.com/msaps/XCFramework-Link-Issue/pull/1) by [dipidoo](https://github.com/dipidoo)
