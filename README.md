@@ -1,4 +1,4 @@
-**🎉 This issue is resolved in Xcode 12 (as of 12.0 Beta 1 12A6159) **
+**🎉 This issue is resolved in Xcode 12 (as of 12.0 Beta 1 12A6159)**
 
 ## Issue
 
