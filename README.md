@@ -1,3 +1,7 @@
+## Update
+
+This issue is resolved in Xcode 12 (as of 12.0 Beta 1 12A6159)
+
 ## Issue
 
 When integrating an `xcframework` Framework into an Xcode workspace with a framework target which is dependent on the `xcframework` and then an application target which is dependent on the workspace framework, the application fails to build with a `No such module` error in the workspace framework.
